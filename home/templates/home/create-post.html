@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+    {% block content %}
+        <form action = {% url 'create_post' %} method = "POST">
+            {% csrf_token %}
+            <table>
+                {{formulario}}
+            </table>
+            <button>Create</button> 
+        </form>
+    {% endblock content %}

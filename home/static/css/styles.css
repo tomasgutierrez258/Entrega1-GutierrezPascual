@@ -2557,6 +2557,13 @@ textarea.form-control-lg {
   margin-right: 1rem;
 }
 
+.btn-create-post{
+  border-radius: 10px;
+  background-color: orangered;
+  padding: 0px;
+  color:white!important;
+}
+
 .btn-check {
   position: absolute;
   clip: rect(0, 0, 0, 0);
