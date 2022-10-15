@@ -10,6 +10,7 @@
             </div>
         </div>
     </header>
+
     <!-- Page content-->
     <div class="container">
         <div class="row">
@@ -28,20 +29,21 @@
                 
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
-
+                    <h1>{{postInfo}}</h1>
                         <!-- Blog post-->
-                        {% for post in posts %}
-                        <div class="col-md-6">
-                            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted">{{post.date}}</div>
-                                <h2 class="card-title h4">{{post.title}}</h2>
-                                <p class="card-text">{{post.text}}</p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
+                        {% for post in posts%}
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <a href="#!"><img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." /></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">{{post.date}}</div>
+                                        <h2 class="card-title h4">{{post.title}}</h2>
+                                        <p class="card-text">{{post.brief_description}}</p>
+                                        <a class="btn btn-primary" href="#!">Read more →</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
-                        
                 </div>
                 <!-- Pagination-->
                 <nav aria-label="Pagination">
@@ -61,17 +63,18 @@
             <div class="col-md-4">
                 <!-- Search widget-->
                 <div class="card mb-4">
-                    <div class="card-header">Buscar en el blog</div>
+                    <div class="card-header">Search the blog</div>
                     <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Buscar!</button>
-                        </div>
+                        <form action = {% url 'home' %} method = "GET">
+                            {{formulario}}
+                            <button class="btn btn-primary">Buscar!</button>
+                        </form>
                     </div>
                 </div>
+
                 <!-- Categories widget-->
                 <div class="card mb-4">
-                    <div class="card-header">Categorias</div>
+                    <div class="card-header">Categories</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
@@ -99,7 +102,4 @@
             </div>
         </div>
     </div>
-
-
-
 {% endblock content %}

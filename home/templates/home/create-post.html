@@ -1,10 +1,9 @@
 {% extends 'home/base.html' %}
     {% block content %}
-        <form action = {% url 'create_post' %} method = "POST">
+        <form action = {% url 'create_post' %} method = "POST" class="card form-modified">
             {% csrf_token %}
-            <table>
-                {{formulario}}
-            </table>
-            <button>Create</button> 
+                
+                    {{formulario}}
+                    <button>Create</button> 
         </form>
     {% endblock content %}
