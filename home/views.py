@@ -1,10 +1,8 @@
-from turtle import pos
-from django.http import HttpResponse
-from django.template import Context,Template,loader
 from datetime import datetime
 from django.shortcuts import render,redirect
 from home.forms  import CreatePostForm, SearchPostForm
 from home.models import Posts
+from django.views.generic.edit import UpdateView,DeleteView
 
 # Create your views here.
 def home(request):
@@ -21,27 +19,45 @@ def home(request):
     formulario = SearchPostForm()
     return render(request, "home/index.html", {"posts" : posts,"formulario":formulario,"postInfo":postInfo})
 
-def about(request):
-    return render(request, "home/about.html")
-
 def create_post(request):
     if request.method == "POST":
-        
         formulario = CreatePostForm(request.POST)
-        
         if formulario.is_valid():
             data = formulario.cleaned_data
-            print("data: ",data)
-            date = data.get('date',datetime.now())
+            
+            date = datetime.now()
+            author = ""
+            
             title = data['title']
             brief_description = data['brief_description']
-            # category = data['category']
-            # featured = data['featured']
+            category = data['category']
             text = data['text']
             
-            post = Posts(date = date,title = title,brief_description = brief_description,text = text)
+            post = Posts(date = date,author=author,title = title,brief_description = brief_description,text = text,category=category)
             post.save()
             return redirect("home")
-    
+        else:
+            return render(request, "home/create_post.html", {"formulario":formulario})
     formulario = CreatePostForm()
-    return render(request, "home/create-post.html", {"formulario":formulario})
+    return render(request, "home/create_post.html", {"formulario":formulario})
+
+# class CreatePost(CreateView):
+#     model = Posts
+#     success_url = '/'
+#     template_name = 'home/create_post.html'
+#     fields = ['date','title','brief_description','category','featured','text']
+    
+class EditPost(UpdateView):
+    model = Posts
+    success_url = '/'
+    template_name = 'home/edit_post.html'
+    fields = ['title','brief_description','category','text']
+    
+
+class RemovePost(DeleteView):
+    model = Posts
+    success_url = '/'
+    template_name = 'home/remove_post.html'
+
+def about(request):
+    return render(request, "home/about.html") 

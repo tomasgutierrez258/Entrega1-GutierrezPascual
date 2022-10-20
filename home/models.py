@@ -9,12 +9,12 @@ class Persona(models.Model):
     mascota = models.CharField(max_length = 30)
     
 class Posts(models.Model):
+    author = models.CharField(max_length = 30)
     date = models.DateField(null=True)
     title = models.CharField(max_length = 30)
     brief_description = models.CharField(max_length = 300)
     text = models.CharField(max_length = 300)
-    # category = models.CharField(max_length = 20, default="")
-    # featured = models.BooleanField(default=False)
+    category = models.CharField(max_length = 20, default="")
     
     def __str__(self):
         return self.title

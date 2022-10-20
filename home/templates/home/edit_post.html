@@ -1,0 +1,12 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+  <form action = {% url 'edit_post' object.id %} method = "POST" class="card form-modified">
+    {% csrf_token %}
+    <table>
+      {{form}}
+    </table>
+    <button>Editar</button> 
+  </form>
+
+{% endblock content %}

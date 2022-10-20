@@ -683,6 +683,9 @@ progress {
     max-width: 1320px;
   }
 }
+.main-content{
+  margin-top: 40px;
+}
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -4053,6 +4056,7 @@ textarea.form-control-lg {
 }
 
 .navbar {
+  height: 70px!important;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -4080,6 +4084,7 @@ textarea.form-control-lg {
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+  font-size: 45px;
 }
 .navbar-nav {
   display: flex;

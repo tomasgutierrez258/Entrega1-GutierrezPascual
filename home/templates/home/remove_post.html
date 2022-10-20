@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+  <form action = {% url 'remove_post' object.id %} method = "POST" class="card form-modified">
+    {% csrf_token %}
+    
+    <h4>Are you sure to remove '{{object}}'?</h4>
+    <button>Confirmar</button> 
+  </form>
+
+{% endblock content %}
