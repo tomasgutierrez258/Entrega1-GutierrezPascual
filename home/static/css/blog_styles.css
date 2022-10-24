@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+.form-modified-1{
+    margin:5% 35%!important;
+    border: none!important;
+  }
+  
+  .form-modified-2{
+    margin:5% 15%!important;
+    border: none!important;
+  }
+
+  .blog-content{
+    min-height: calc(100vh - 56px - 120px);
+  }
+  form input{
+  margin-bottom:10px;
+  margin-right:0px;
+  }
+  
+  /* form button{
+    margin-top: 15px!important;
+    border: none!important;
+    padding: 10px!important;
+    border-radius: 10px;
+    background-color: orangered;
+    padding: 0px;
+    color:white!important;
+  } */
+
+  .main-content{
+    margin-top: 20px;
+  }
+
+  .btn-create-post{
+    border-radius: 10px;
+    background-color: orangered;
+    padding: 0px;
+    color:white!important;
+  }
+
+  .btn{
+    display: flex!important;
+    border-radius: 1000px!important;
+    align-items: center!important;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .card-body{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .card-title{
+    text-transform: capitalize;
+  }
+  .card-header,.user-card-header-info,.user-card-header-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .user-card-header-photo{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 100%;
+  }
+
+  .user-card-header-author{
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .user-card-header-date{
+    margin-left: 5px;
+  }
+
+  .card-img-info{
+    display: flex;
+    max-width: 300px;
+  }
+
+  .card-img-center{
+    align-items: center;
+    max-width: 600px;
+  }
+
+  .card-img-top{
+    border-radius: 0!important;
+  }
+
+  .center-login{
+    max-width: 300px;
+    min-height: calc(100vh - 56px - 120px);
+    margin: 2% auto;
+  }

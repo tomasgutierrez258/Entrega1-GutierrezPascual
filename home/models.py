@@ -14,7 +14,7 @@ class Posts(models.Model):
     title = models.CharField(max_length = 30)
     brief_description = models.CharField(max_length = 300)
     text = models.CharField(max_length = 300)
-    category = models.CharField(max_length = 20, default="")
+    edited = models.BooleanField(default=False)
     
     def __str__(self):
         return self.title

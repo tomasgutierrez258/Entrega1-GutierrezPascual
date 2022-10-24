@@ -1,9 +1,8 @@
 {% extends 'home/base.html' %}
     {% block content %}
-        <form action = {% url 'create_post' %} method = "POST" class="card form-modified">
+        <form action = {% url 'create_post' %} method = "POST" class="card form-modified-1">
             {% csrf_token %}
-                
                     {{formulario}}
-                    <button>Create</button> 
+                    <button class="btn btn-primary">Create</button> 
         </form>
     {% endblock content %}

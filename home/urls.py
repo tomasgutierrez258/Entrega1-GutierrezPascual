@@ -7,5 +7,5 @@ urlpatterns = [
     path('edit-post/<int:pk>/', views.EditPost.as_view(),name="edit_post"),
     path('remove-post/<int:pk>/', views.RemovePost.as_view(),name="remove_post"),
     
-    path('about/', views.about),
+    path('about/', views.about, name="about"),
 ]

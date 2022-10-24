@@ -13,40 +13,73 @@
 
     <!-- Page content-->
     <div class="container main-content">
+            
         <div class="row">
             <!-- Blog entries-->
+            <div class="col-md-2">
+            </div>
             <div class="col-md-8">
-                <!-- Featured blog post-->
-                {% comment %} <div class="">
-                    <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                    <div class="card-body">
-                        <div class="small text-muted">January 1, 2022</div>
-                        <h2 class="card-title">Featured Post Title</h2>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                        <a class="btn btn-primary" href="#!">Read more →</a>
-                    </div>
-                </div> {% endcomment %}
-                
-                <!-- Nested row for non-featured blog posts-->
-                <div class="row">
-                    <h1>{{postInfo}}</h1>
+                    <form class="col-12" action = {% url 'home' %} method = "GET" >
+                        {{formulario}}
+                    </form>
+                    {% if  postInfo%}
+                        <h1>{{postInfo}}</h1>
+                    {% endif %}
+                    
                         <!-- Blog post-->
                         {% for post in posts %}
-                            <div class="col-md-6">
+                            <div class="">
                                 <div class="card">
-                                    <a href="#!"><img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." /></a>
-                                    <div class="card-body">
-                                        <div class="small text-muted">{{post.date}}</div>
-                                        <h2 class="card-title h4">{{post.title}}</h2>
-                                        <p class="card-text">{{post.brief_description}}</p>
-                                        <a class="btn btn-primary" href="#!">Read more</a>
-                                        <a class="btn btn-primary" href={% url 'edit_post' post.id %}>Edit</a>
-                                        <a class="btn btn-danger" href={% url 'remove_post' post.id %}>Remove</a>
+                                    <div class="card-header">
+                                        <div class="user-card-header-content">
+                                            <div class="user-card-header-photo">
+                                                {% comment %} <a href="#!"><img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." /></a> {% endcomment %}
+                                            </div>
+                                            <div class="user-card-header-info">
+                                                <div class="user-card-header-author">
+                                                    {{post.author}}
+                                                </div>
+                                                <div class="small text-muted user-card-header-date">
+                                                    {% if post.edited %}
+                                                        - Edited {{post.date}}
+                                                    {% else %}
+                                                        - Posted {{post.date}}
+                                                    {% endif %}
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="user-card-header-content">
+                                            {% if request.user.is_authenticated %}
+                                                <a class="btn btn-primary" href={% url 'edit_post' post.id %}>
+                                                    Edit 
+                                                    <i class="material-icons" style="font-size:18px; color:black;">edit</i>
+                                                </a>
+                                                <a class="btn btn-danger align-items-vertically" href={% url 'remove_post' post.id %}>
+                                                    Delete 
+                                                    <i class="material-icons" style="font-size:18px; color:black;">delete</i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
                                     </div>
+                                    <div class="card-body">
+                                        <div class="card-body-content col-md-8">
+                                            <a href="clickcard " class="nav-link">
+                                                <h2 class="card-title h4">{{post.title}}</h2>
+                                                <p class="card-text">{{post.brief_description}}</p>
+                                            </a>
+                                        </div>
+                                        <div class="card-body-img col-md-4">
+                                            <a href="#!" class="">
+                                                <img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer"></div>
                                 </div>
                             </div>
                         {% endfor %}
-                </div>
                 <!-- Pagination-->
                 <nav aria-label="Pagination">
                     <hr class="my-0" />
@@ -61,8 +94,12 @@
                     </ul>
                 </nav>
             </div>
+
+        <div class="col-md-2">
+        </div>
+
             <!-- Side widgets-->
-            <div class="col-md-4">
+            {% comment %} <div class="col-md-4">
                 <!-- Search widget-->
                 <div class="card mb-4">
                     <div class="card-header">Search the blog</div>
@@ -73,35 +110,8 @@
                         </form>
                     </div>
                 </div>
+            </div> {% endcomment %}
 
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Categories</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Side Widget</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                </div>
-            </div>
         </div>
     </div>
 {% endblock content %}

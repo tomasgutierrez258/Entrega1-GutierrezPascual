@@ -4,6 +4,9 @@ from home.forms  import CreatePostForm, SearchPostForm
 from home.models import Posts
 from django.views.generic.edit import UpdateView,DeleteView
 
+from django.contrib.auth.mixins import LoginRequiredMixin #limita al usuario a acceder a ciertas paginas
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def home(request):
     postInfo=""
@@ -19,6 +22,7 @@ def home(request):
     formulario = SearchPostForm()
     return render(request, "home/index.html", {"posts" : posts,"formulario":formulario,"postInfo":postInfo})
 
+@login_required
 def create_post(request):
     if request.method == "POST":
         formulario = CreatePostForm(request.POST)
@@ -26,35 +30,27 @@ def create_post(request):
             data = formulario.cleaned_data
             
             date = datetime.now()
-            author = ""
+            author = request.user.username
             
             title = data['title']
             brief_description = data['brief_description']
-            category = data['category']
             text = data['text']
             
-            post = Posts(date = date,author=author,title = title,brief_description = brief_description,text = text,category=category)
+            post = Posts(date = date,author=author,title = title,brief_description = brief_description,text = text)
             post.save()
             return redirect("home")
         else:
             return render(request, "home/create_post.html", {"formulario":formulario})
     formulario = CreatePostForm()
     return render(request, "home/create_post.html", {"formulario":formulario})
-
-# class CreatePost(CreateView):
-#     model = Posts
-#     success_url = '/'
-#     template_name = 'home/create_post.html'
-#     fields = ['date','title','brief_description','category','featured','text']
     
-class EditPost(UpdateView):
+class EditPost(LoginRequiredMixin,UpdateView):
     model = Posts
     success_url = '/'
     template_name = 'home/edit_post.html'
-    fields = ['title','brief_description','category','text']
-    
+    fields = ['title','brief_description','text']
 
-class RemovePost(DeleteView):
+class RemovePost(LoginRequiredMixin,DeleteView):
     model = Posts
     success_url = '/'
     template_name = 'home/remove_post.html'

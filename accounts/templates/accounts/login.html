@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<form action = {% url 'login' %} method = "POST" class="card form-modified-1">
+    {% csrf_token %}
+    <table>
+      {{formulario}}
+    </table>
+    <button class="btn btn-primary">Iniciar sesion</button> 
+  </form>
+{% endblock content %}
