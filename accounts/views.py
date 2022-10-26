@@ -47,6 +47,7 @@ def edit_profile(request):
             request.user.userextension.avatar = data['avatar']
             request.user.userextension.page = data['page']
             request.user.userextension.description = data['description']
+            request.user.userextension.phone_number = data['phone_number']
             request.user.userextension.job = data['job']
             request.user.userextension.address = data['address']
             
