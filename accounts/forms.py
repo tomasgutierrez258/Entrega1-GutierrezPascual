@@ -11,3 +11,17 @@ class MyUserCreationForm(UserCreationForm):
         model = User 
         fields = ['username','email','password1','password2']
         help_text = {key: '' for key in fields} #es una forma de crear un diccionario dado las keys en lista y con valores en vacio (list comprehension)
+        
+class EditProfileForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.CharField()
+    
+    page = forms.CharField()
+    description = forms.CharField()
+    phone_number = forms.CharField()
+    job = forms.CharField()
+    address = forms.CharField()
+    
+    avatar = forms.ImageField(required=False)
+    

@@ -1,0 +1,11 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<form action = {% url 'edit_profile' %} method = "POST" class="card form-modified-1" enctype = 'multipart/form-data'>
+    {% csrf_token %}
+    <table>
+      {{formulario}}
+    </table>
+    <button class="btn btn-primary">Edit</button> 
+  </form>
+{% endblock content %}

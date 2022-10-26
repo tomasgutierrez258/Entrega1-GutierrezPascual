@@ -15,6 +15,6 @@ class Posts(models.Model):
     brief_description = models.CharField(max_length = 300)
     text = models.CharField(max_length = 300)
     edited = models.BooleanField(default=False)
-    
+    image_post = models.ImageField(upload_to='post_images', null=True, blank=True)
     def __str__(self):
         return self.title

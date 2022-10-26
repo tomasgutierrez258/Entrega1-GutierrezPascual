@@ -22,30 +22,42 @@
                 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="display:flex;align-items:center;">
                     <li class="nav-item"><a class="nav-link" href={% url 'about' %}>About us</a></li>
-                    <li class="nav-item"><a class="btn btn-primary" href="/create-post">Create post</a></li>
+                    {% comment %} <li class="nav-item"><a class="btn btn-primary" href="/create-post">Create post</a></li> {% endcomment %}
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item "><a class="nav-link" href={% url 'logout' %}>Logout</a></li>
-                        <li class="nav-item nav-link"  href="#">{{request.user.username}}</li>
+                        {% comment %} <li class="nav-item "><a class="nav-link" href={% url 'logout' %}>Logout</a></li> {% endcomment %}
+                        {% comment %} <li class="nav-item "><a class="nav-link" href={% url 'profile' %}>{{request.user.username}}</a></li> {% endcomment %}
+
+                        <div class="dropdown text-end">
+                            <a href="#" class="d-flex link-dark text-decoration-none dropdown-toggle" style="color:white!important;" data-bs-toggle="dropdown"  aria-expanded="false">
+                                <li class="nav-item nav-link">{{request.user.username}}</li>
+                                {% comment %} <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> {% endcomment %}
+                                {% if request.user.userextension.avatar %}
+                                    <img src={{request.user.userextension.avatar.url}} alt="avatar"
+                                    class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
+                                {% else %}
+                                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=128" alt="avatar"
+                                    class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
+                                
+                                {% comment %} <svg viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><title>Alicia Dickerson</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#282424"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(37 18 18) scale(1.1)" fill="#4a6dff" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-7 18 18)"><path d="M13,20 a1,0.75 0 0,0 10,0" fill="#FFFFFF"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#FFFFFF"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#FFFFFF"></rect></g></g></svg> {% endcomment %}
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu text-small" style="">
+                                <li><a class="dropdown-item" href="/create-post">Create post</a></li>
+                                <li><a class="dropdown-item" href={% url 'profile' %}>Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href={% url 'logout' %}>Sign out</a></li>
+                            </ul>
+                        </div>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link" href={% url 'login' %}>Login</a></li>
+                    <li class="btn btn-primary"><a class="nav-link" href={% url 'login' %}>Login</a></li>
                     <li class="nav-item"><a class="nav-link" href={% url 'register' %}>Register</a></li>
                     {% endif %}
                 </ul>
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" style="color:white!important;" data-bs-toggle="dropdown"  aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                    <ul class="dropdown-menu text-small" style="">
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
+                
             </div>
         </div>
     </nav>
-    <section class="blog-content">
+    <section class="blog-content container">
         {% block content %}{% endblock content %}
     </section>
         

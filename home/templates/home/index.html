@@ -12,7 +12,7 @@
     </header> {% endcomment %}
 
     <!-- Page content-->
-    <div class="container main-content">
+    <div class="main-content">
             
         <div class="row">
             <!-- Blog entries-->
@@ -51,18 +51,18 @@
                                         </div>
                                         <div class="user-card-header-content">
                                             {% if request.user.is_authenticated %}
-                                                <a class="btn btn-primary" href={% url 'edit_post' post.id %}>
-                                                    Edit 
+                                                <a class="btn btn-primary btn-card" href={% url 'edit_post' post.id %}>
+                                                     
                                                     <i class="material-icons" style="font-size:18px; color:black;">edit</i>
                                                 </a>
-                                                <a class="btn btn-danger align-items-vertically" href={% url 'remove_post' post.id %}>
-                                                    Delete 
+                                                <a class="btn btn-danger btn-card" href={% url 'remove_post' post.id %}>
+                                                     
                                                     <i class="material-icons" style="font-size:18px; color:black;">delete</i>
                                                 </a>
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body d-flex">
                                         <div class="card-body-content col-md-8">
                                             <a href="clickcard " class="nav-link">
                                                 <h2 class="card-title h4">{{post.title}}</h2>
@@ -71,12 +71,10 @@
                                         </div>
                                         <div class="card-body-img col-md-4">
                                             <a href="#!" class="">
-                                                <img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." />
+                                                <img class="card-img-top" src={{post.image_post}} alt="..." />
                                             </a>
                                         </div>
                                     </div>
-                                    
-                                    <div class="card-footer"></div>
                                 </div>
                             </div>
                         {% endfor %}

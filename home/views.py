@@ -25,7 +25,7 @@ def home(request):
 @login_required
 def create_post(request):
     if request.method == "POST":
-        formulario = CreatePostForm(request.POST)
+        formulario = CreatePostForm(request.POST, request.FILES)
         if formulario.is_valid():
             data = formulario.cleaned_data
             
@@ -35,8 +35,9 @@ def create_post(request):
             title = data['title']
             brief_description = data['brief_description']
             text = data['text']
+            image_post = data['image_post']
             
-            post = Posts(date = date,author=author,title = title,brief_description = brief_description,text = text)
+            post = Posts(date = date,author=author,title = title,brief_description = brief_description,text = text, image_post = image_post)
             post.save()
             return redirect("home")
         else:
