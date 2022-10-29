@@ -22,6 +22,12 @@
     margin-top: 20px;
   }
 
+  .user-dropdown{
+    background-color:rgb(74, 79, 85);
+    border-radius: 1000px;
+    padding: 1px 10px;
+  }
+
   .btn-create-post{
     border-radius: 10px;
     background-color: orangered;

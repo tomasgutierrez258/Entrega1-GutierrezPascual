@@ -33,11 +33,14 @@
                                     <div class="card-header">
                                         <div class="user-card-header-content">
                                             <div class="user-card-header-photo">
+                                                
+                                                <img class="card-img-top" src={{post.user_avatar}} alt="..." />
+                                                
                                                 {% comment %} <a href="#!"><img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." /></a> {% endcomment %}
                                             </div>
                                             <div class="user-card-header-info">
                                                 <div class="user-card-header-author">
-                                                    {{post.author}}
+                                                    {{post.user}}
                                                 </div>
                                                 <div class="small text-muted user-card-header-date">
                                                     {% if post.edited %}
@@ -63,52 +66,33 @@
                                         </div>
                                     </div>
                                     <div class="card-body d-flex">
-                                        <div class="card-body-content col-md-8">
-                                            <a href="clickcard " class="nav-link">
-                                                <h2 class="card-title h4">{{post.title}}</h2>
-                                                <p class="card-text">{{post.brief_description}}</p>
-                                            </a>
-                                        </div>
-                                        <div class="card-body-img col-md-4">
-                                            <a href="#!" class="">
-                                                <img class="card-img-top" src={{post.image_post}} alt="..." />
-                                            </a>
-                                        </div>
+                                        {% if post.image_post %}
+                                            <div class="card-body-content col-md-8">
+                                                <a href={% url 'read_post' post.id %} class="nav-link">
+                                                    <h2 class="card-title h4">{{post.title}}</h2>
+                                                    <p class="card-text">{{post.brief_description}}</p>
+                                                </a>
+                                            </div>
+                                            <div class="card-body-img col-md-4">
+                                                <a href="#!" class="">
+                                                        <img class="card-img-top" src={{post.image_post.url}} alt="..." />
+                                                </a>
+                                            </div>
+                                        {% else %}
+                                            <div class="card-body-content col-md-12">
+                                                <a href={% url 'read_post' post.id %} class="nav-link">
+                                                    <h2 class="card-title h4">{{post.title}}</h2>
+                                                    <p class="card-text">{{post.brief_description}}</p>
+                                                </a>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
                         {% endfor %}
-                <!-- Pagination-->
-                <nav aria-label="Pagination">
-                    <hr class="my-0" />
-                    <ul class="pagination justify-content-center my-4">
-                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                    </ul>
-                </nav>
-            </div>
 
         <div class="col-md-2">
         </div>
-
-            <!-- Side widgets-->
-            {% comment %} <div class="col-md-4">
-                <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Search the blog</div>
-                    <div class="card-body">
-                        <form action = {% url 'home' %} method = "GET">
-                            {{formulario}}
-                            <button class="btn btn-primary">Buscar!</button>
-                        </form>
-                    </div>
-                </div>
-            </div> {% endcomment %}
 
         </div>
     </div>

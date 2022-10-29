@@ -1,5 +1,8 @@
 from email.policy import default
 from django.db import models
+from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 class Persona(models.Model):
@@ -9,12 +12,14 @@ class Persona(models.Model):
     mascota = models.CharField(max_length = 30)
     
 class Posts(models.Model):
-    author = models.CharField(max_length = 30)
     date = models.DateField(null=True)
     title = models.CharField(max_length = 30)
     brief_description = models.CharField(max_length = 300)
-    text = models.CharField(max_length = 300)
-    edited = models.BooleanField(default=False)
+    text = RichTextField(null=True)
     image_post = models.ImageField(upload_to='post_images', null=True, blank=True)
+    
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True) #author
+    # user_avatar = models.CharField(max_length = 200)
+    
     def __str__(self):
         return self.title

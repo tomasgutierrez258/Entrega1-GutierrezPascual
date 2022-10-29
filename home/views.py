@@ -1,12 +1,13 @@
 from datetime import datetime
+from re import template
 from django.shortcuts import render,redirect
 from home.forms  import CreatePostForm, SearchPostForm
 from home.models import Posts
 from django.views.generic.edit import UpdateView,DeleteView
-
+from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin #limita al usuario a acceder a ciertas paginas
 from django.contrib.auth.decorators import login_required
-
+from accounts.models import UserExtension
 # Create your views here.
 def home(request):
     postInfo=""
@@ -20,7 +21,21 @@ def home(request):
         if len(posts) == 0:
             postInfo = "No posts have been created yet"
     formulario = SearchPostForm()
-    return render(request, "home/index.html", {"posts" : posts,"formulario":formulario,"postInfo":postInfo})
+    
+    user_extension=set()
+    for post in posts:
+        user_extension = UserExtension.objects.filter(user_id__id__icontains=post.user_id)
+        # user_avatar = user_extension.avatar
+        print("user_extension: ",user_extension)
+        
+    # user_extension = UserExtension.objects.filter(user_id__icontains=posts.user_id)
+    # user_avatar = user_extension.avatar
+    # print("user_avatar: ",user_avatar)
+    # user_extension = UserExtension.objects.all()
+    # for ext in user_extension:
+    #     print("---URL---",ext.user_id,ext.avatar)
+    print("----posts: ",posts)
+    return render(request, "home/index.html", {"posts" : posts,"formulario":formulario,"postInfo":postInfo,"user_extension":user_extension})
 
 @login_required
 def create_post(request):
@@ -30,14 +45,17 @@ def create_post(request):
             data = formulario.cleaned_data
             
             date = datetime.now()
-            author = request.user.username
+            user = request.user
+            
+            # print("user.id: ",type(user.id))
+            # user_avatar = UserExtension.objects.filter(user_id__id__icontains=user.id)
             
             title = data['title']
             brief_description = data['brief_description']
             text = data['text']
             image_post = data['image_post']
             
-            post = Posts(date = date,author=author,title = title,brief_description = brief_description,text = text, image_post = image_post)
+            post = Posts(date = date,user=user,title = title,brief_description = brief_description,text = text, image_post = image_post)
             post.save()
             return redirect("home")
         else:
@@ -55,6 +73,10 @@ class RemovePost(LoginRequiredMixin,DeleteView):
     model = Posts
     success_url = '/'
     template_name = 'home/remove_post.html'
+
+class readPost(DetailView):
+    model = Posts
+    template_name = 'home/read_post.html'
 
 def about(request):
     return render(request, "home/about.html") 

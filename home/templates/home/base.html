@@ -16,19 +16,20 @@
         <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container" style="display:flex;align-items:center;">
-            <a class="navbar-brand" style="font-weight:bold;font-size:24px;" href="/">Coder Blog</a>
+            <a class="navbar-brand" style="font-weight:bold;font-size:28px;" href="/">Coder Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="display:flex;align-items:center;">
                     <li class="nav-item"><a class="nav-link" href={% url 'about' %}>About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href={% url 'contacts' %}>messenger</a></li>
                     {% comment %} <li class="nav-item"><a class="btn btn-primary" href="/create-post">Create post</a></li> {% endcomment %}
                     {% if request.user.is_authenticated %}
                         {% comment %} <li class="nav-item "><a class="nav-link" href={% url 'logout' %}>Logout</a></li> {% endcomment %}
                         {% comment %} <li class="nav-item "><a class="nav-link" href={% url 'profile' %}>{{request.user.username}}</a></li> {% endcomment %}
 
-                        <div class="dropdown text-end">
-                            <a href="#" class="d-flex link-dark text-decoration-none dropdown-toggle" style="color:white!important;" data-bs-toggle="dropdown"  aria-expanded="false">
+                        <div class="dropdown user-dropdown">
+                            <a href="#" class="d-flex link-dark text-decoration-none" style="align-items:center!important;" data-bs-toggle="dropdown" aria-expanded="false">
                                 <li class="nav-item nav-link">{{request.user.username}}</li>
                                 {% comment %} <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> {% endcomment %}
                                 {% if request.user.userextension.avatar %}
@@ -41,7 +42,9 @@
                                 {% comment %} <svg viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><title>Alicia Dickerson</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#282424"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(37 18 18) scale(1.1)" fill="#4a6dff" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-7 18 18)"><path d="M13,20 a1,0.75 0 0,0 10,0" fill="#FFFFFF"></path><rect x="12" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#FFFFFF"></rect><rect x="22" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#FFFFFF"></rect></g></g></svg> {% endcomment %}
                                 {% endif %}
                             </a>
-                            <ul class="dropdown-menu text-small" style="">
+                            <ul class="dropdown-menu text-small">
+                                <li class="dropdown-item" ></h5>{{request.user.first_name}} {{request.user.last_name}}</h5></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/create-post">Create post</a></li>
                                 <li><a class="dropdown-item" href={% url 'profile' %}>Profile</a></li>
                                 <li><hr class="dropdown-divider"></li>
