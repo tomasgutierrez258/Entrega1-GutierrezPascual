@@ -1,13 +1,8 @@
 {% extends 'home/base.html' %}
 {% block content %}
-    {% comment %} <p>date</p>
-    <h1>{{posts.title}}</h1>
-    <p>{{posts.text}}</p>
-    <img src={{posts.image_post.url}} alt=""> {% endcomment %}
-
     <div class="main-content ">
             
-        <div class="row">
+        <div class="row" style="margin-bottom:50px!important;">
             <!-- Blog entries-->
             <div class="col-md-2">
             </div>
@@ -25,10 +20,10 @@
                                     <div class="card-header">
                                         <div class="user-card-header-content">
                                             <div class="user-card-header-photo">
-                                                
-                                                <img class="card-img-top" src={{posts.user_avatar}} alt="..." />
-                                                
-                                                {% comment %} <a href="#!"><img class="card-img-top" src="https://picsum.photos/700/350?random={{posts.id}}" alt="..." /></a> {% endcomment %}
+                                                {% if posts.user.userextension.avatar %}
+                                                    <img src={{posts.user.userextension.avatar.url}} alt="avatar"
+                                                    class="rounded-circle img-fluid" style="width: 26px;height: 26px;">
+                                                {% endif %}
                                             </div>
                                             <div class="user-card-header-info">
                                                 <div class="user-card-header-author">
@@ -48,9 +43,10 @@
                                     <div class="card-body d-flex">
                                         <div class="card-body-content col-md-12">
                                             <h2 class="card-title h1">{{posts.title}}</h2>
+                                            <h2 class="card-title h5">{{posts.subtitle}}</h2>
                                             <p class="card-text">{{posts.text}}</p>
                                             {% if posts.image_post %}
-                                                <img class="card-img-top" src={{posts.image_post.url}} alt="..." />
+                                                <img class="card-img-top" src={{posts.image_post.url}} alt="..."  />
                                             {% endif %}
                                         </div>
                                     </div>

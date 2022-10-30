@@ -1,99 +1,74 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-    <!-- Page header with logo and tagline-->
-    {% comment %} <header class="py-5 bg-light border-bottom mb-4">
-        <div class="container">
-            <div class="text-center my-5">
-                <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
-            </div>
-        </div>
-    </header> {% endcomment %}
+            <form class="col-12" action = {% url 'home' %} method = "GET" style="margin-top: 20px;">
+                {{formulario}}
+            </form>
 
-    <!-- Page content-->
-    <div class="main-content">
-            
-        <div class="row">
-            <!-- Blog entries-->
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                    <form class="col-12" action = {% url 'home' %} method = "GET" >
-                        {{formulario}}
-                    </form>
-                    {% if  postInfo%}
-                        <h1>{{postInfo}}</h1>
-                    {% endif %}
-                    
-                        <!-- Blog post-->
-                        {% for post in posts %}
-                            <div class="">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="user-card-header-content">
-                                            <div class="user-card-header-photo">
-                                                
-                                                <img class="card-img-top" src={{post.user_avatar}} alt="..." />
-                                                
-                                                {% comment %} <a href="#!"><img class="card-img-top" src="https://picsum.photos/700/350?random={{post.id}}" alt="..." /></a> {% endcomment %}
-                                            </div>
-                                            <div class="user-card-header-info">
-                                                <div class="user-card-header-author">
-                                                    {{post.user}}
-                                                </div>
-                                                <div class="small text-muted user-card-header-date">
-                                                    {% if post.edited %}
-                                                        - Edited {{post.date}}
-                                                    {% else %}
-                                                        - Posted {{post.date}}
-                                                    {% endif %}
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="user-card-header-content">
-                                            {% if request.user.is_authenticated %}
-                                                <a class="btn btn-primary btn-card" href={% url 'edit_post' post.id %}>
-                                                     
-                                                    <i class="material-icons" style="font-size:18px; color:black;">edit</i>
-                                                </a>
-                                                <a class="btn btn-danger btn-card" href={% url 'remove_post' post.id %}>
-                                                     
-                                                    <i class="material-icons" style="font-size:18px; color:black;">delete</i>
-                                                </a>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <div class="card-body d-flex">
-                                        {% if post.image_post %}
-                                            <div class="card-body-content col-md-8">
-                                                <a href={% url 'read_post' post.id %} class="nav-link">
-                                                    <h2 class="card-title h4">{{post.title}}</h2>
-                                                    <p class="card-text">{{post.brief_description}}</p>
-                                                </a>
-                                            </div>
-                                            <div class="card-body-img col-md-4">
-                                                <a href="#!" class="">
-                                                        <img class="card-img-top" src={{post.image_post.url}} alt="..." />
-                                                </a>
-                                            </div>
-                                        {% else %}
-                                            <div class="card-body-content col-md-12">
-                                                <a href={% url 'read_post' post.id %} class="nav-link">
-                                                    <h2 class="card-title h4">{{post.title}}</h2>
-                                                    <p class="card-text">{{post.brief_description}}</p>
-                                                </a>
-                                            </div>
+            {% if  postInfo%}
+                <h1>{{postInfo}}</h1>
+            {% endif %}
+     
+            <div>
+                <!-- Blog post-->
+                {% for post in posts %}
+                        <div class="card post-card">
+                            <div class="card-header">
+                                <div class="user-card-header-content">
+                                    <div class="user-card-header-photo">
+                                        {% if post.user.userextension.avatar %}
+                                            <img src={{post.user.userextension.avatar.url}} alt="avatar"
+                                            class="rounded-circle img-fluid" style="width: 26px;height: 26px;">
                                         {% endif %}
                                     </div>
+                                    <div class="user-card-header-info">
+                                        <div class="user-card-header-author">
+                                            {{post.user}}
+                                        </div>
+                                        <div class="small text-muted user-card-header-date">
+                                            {% if post.edited %}
+                                                - Edited {{post.date}}
+                                            {% else %}
+                                                - Posted {{post.date}}
+                                            {% endif %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user-card-header-content">
+                                    {% if request.user.is_authenticated %}
+                                        <a class="btn btn-primary btn-card btn-card-edit" href={% url 'edit_post' post.id %}>
+                                            <i class="material-icons" style="font-size:18px;margin-right:2px">edit</i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-card btn-card-delete" href={% url 'remove_post' post.id %}>
+                                            <i class="material-icons" style="font-size:18px;margin-right:2px">delete</i>
+                                            Delete
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
-                        {% endfor %}
-
-        <div class="col-md-2">
-        </div>
-
-        </div>
-    </div>
+                            <div class="card-body d-flex">
+                                <a href={% url 'read_post' post.id %} class="nav-link">
+                                    {% if post.image_post %}
+                                        <div class="card-body-content col-md-8">
+                                                <h2 class="card-title h5">{{post.title}}</h2>
+                                                <p class="card-text">{{post.brief_description}}</p>
+                                        </div>
+                                        <div class="card-body-img col-md-4">
+                                            <a href="#!" class="">
+                                                    <img class="card-img-top" src={{post.image_post.url}} alt="..." />
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div class="card-body-content col-md-12">
+                                                <h2 class="card-title h5">{{post.title}}</h2>
+                                                <p class="card-text">{{post.brief_description}}</p>
+                                        </div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
 {% endblock content %}

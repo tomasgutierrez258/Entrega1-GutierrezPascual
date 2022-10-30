@@ -23,8 +23,9 @@
                             <th></th>
                             <tr>
                                 <td>
-                                    <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=128" alt="avatar"
-                                    class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
+                                  {% if user.userextension.avatar %}
+                                      <img src={{user.userextension.avatar.url}} alt="avatar" class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
+                                    {% endif %}
                                 </td>
                                 <td>
                                     {{user}}

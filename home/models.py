@@ -13,7 +13,8 @@ class Persona(models.Model):
     
 class Posts(models.Model):
     date = models.DateField(null=True)
-    title = models.CharField(max_length = 30)
+    title = models.CharField(max_length = 60)
+    subtitle = models.CharField(max_length = 150)
     brief_description = models.CharField(max_length = 300)
     text = RichTextField(null=True)
     image_post = models.ImageField(upload_to='post_images', null=True, blank=True)
