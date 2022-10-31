@@ -1,50 +1,33 @@
 {% extends 'home/base.html' %}
 {% block content %}
-    
-
-    <section style="background-color: #eee;">
-        <div class="container py-5">
-      
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-4">
-      
-              <div class="card" id="chat1" style="border-radius: 15px;">
-                <div
-                  class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
-                  style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                  <i class="fas fa-angle-left"></i>
-                  <p class="mb-0 fw-bold">Contacts</p>
-                  <i class="fas fa-times"></i>
-                </div>
-                <div class="card-body">
-                    {% for user in users %}
-                        <table>
-                            <th></th>
-                            <th></th>
-                            <tr>
-                                <td>
-                                  {% if user.userextension.avatar %}
-                                      <img src={{user.userextension.avatar.url}} alt="avatar" class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {{user}}
-                                </td>
-                                <td>
-                                    <a href= {% url 'messages' user %}>
-                                        <button class="btn btn-primary">chat</button>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                        
-                    {% endfor %}
-                </div>
-              </div>
-      
+<div style="display:flex;justify-content:center;">
+  <div class="row" style="">
+    <div class="col-md-12" style="">
+      <div class="card-body" style="display:flex;flex-direction:column;gap:30px;min-width: 280px;">
+        {% for user in users %}
+          <div class="contact-user" style="display:flex;justify-content:space-between;">
+            <div style="margin-left:10px">
+              {% if user.userextension.avatar %}
+              <img src={{user.userextension.avatar.url}} alt="avatar" class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
+              {% else %}
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=128" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 32px;height: 32px;">
+              {% endif %}
+            {{user}}
+            </div>
+            <div style="margin-right:10px">
+              <a class="btn btn-primary btn-card btn-card-login" href={% url 'messages' user %}>
+                <i class="material-icons" style="font-size:18px;margin-right:2px">chat</i>
+                chat
+              </a> 
             </div>
           </div>
-      
-        </div>
-      </section>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+    
+  
 {% endblock content %}

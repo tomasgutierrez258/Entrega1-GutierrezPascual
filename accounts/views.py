@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login
 from accounts.forms import MyUserCreationForm,EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.models import User
 from accounts.models import UserExtension
 # Create your views here.
 def mi_login(request):

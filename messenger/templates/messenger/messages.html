@@ -1,62 +1,55 @@
 {% extends 'home/base.html' %}
 {% block content %}
 
-<section style="background-color: #eee;">
-    <div class="container py-5">
-  
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-4">
-  
-          <div class="card" id="chat1" style="border-radius: 15px;">
-            <div
-              class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
-              style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-              <i class="fas fa-angle-left"></i>
-              <p class="mb-0 fw-bold">Live chat</p>
-              <i class="fas fa-times"></i>
-            </div>
-            <div class="card-body">
-                {% for message in messages %}
-                    {% if message.sent_by == request.user.username %}
-                        <div class="d-flex flex-row justify-content-end mb-4">
-                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                            <p class="small mb-0">{{message.message}}</p>
-                            </div>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                            alt="avatar 1" style="width: 45px; height: 100%;">
-                        </div>
-                    {% else %}
-                        <div class="d-flex flex-row justify-content-start mb-4">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                            alt="avatar 1" style="width: 45px; height: 100%;">
-                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                            <p class="small mb-0">{{message.message}}.</p>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-
-              
-  
-              <div class="form-outline">
-                <form action = {% url 'messages' other_user %} method = "POST" class="card form-modified-1" >
-                    {% csrf_token %}
-                            {{formulario}}
-                    <button class="btn btn-primary">Send</button> 
-                </form>
-              </div>
-  
-            </div>
-          </div>
-  
-        </div>
+  <div style="display:flex;align-items:center;justify-content:center;margin:30px 0;">
+    <div class="card" id="chat1" style="border-radius: 15px;min-width:400px;">
+      <div class="card-header" style="display:flex;justify-content:center;">
+        {{other_user_str}}
       </div>
-  
+      <div class="card-body">
+          {% for message in messages %}
+              {% if message.sent_by == request.user.username %}
+                  <div class="d-flex flex-row justify-content-end mb-4">
+                      <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+                      <p class="small mb-0">{{message.message}}</p>
+                      </div>
+                      {% if request.user.userextension.avatar %}
+                        <img src={{request.user.userextension.avatar.url}} alt="avatar"
+                        class="rounded-circle img-fluid" style="width: 45px;height: 45px;">
+                      {% else %}
+                        <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=128" alt="avatar"
+                        class="rounded-circle img-fluid" style="width: 45px;height: 45px;">
+                      {% endif %}
+                  </div>
+              {% else %}
+                  <div class="d-flex flex-row justify-content-start mb-4">
+                      {% for user in other_user_obj %}
+                        {% if user.userextension.avatar %}
+                          <img src={{user.userextension.avatar.url}} alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 45px;height: 45px;">
+                        {% else %}
+                          <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=128" alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 45px;height: 45px;">
+                        {% endif %}
+                      {% endfor %}
+                      <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                      <p class="small mb-0">{{message.message}}</p>
+                      </div>
+                  </div>
+              {% endif %}
+          {% endfor %}
+
+        <div class="form-outline">
+          <form action = {% url 'messages' other_user_str %} method = "POST" style="padding:0!important;">
+              {% csrf_token %}
+              <div style="display:flex;align-items: center;justify-content:center!important;">
+                {{formulario}}
+                <button class="btn btn-primary btn-card btn-card-login">Send</button> 
+              </div>
+          </form>
+        </div>
+
+      </div>
     </div>
-  </section>
-
-
-    
-
-
+  </div>
 {% endblock content %}

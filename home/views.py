@@ -14,11 +14,11 @@ def home(request):
     if title:
         posts = Posts.objects.filter(title__icontains=title)
         if len(posts) == 0:
-            postInfo = "No results found"
+            postInfo = 1 # "No results found"
     else:
         posts = Posts.objects.all()
         if len(posts) == 0:
-            postInfo = "No posts have been created yet"
+            postInfo = 2 # "No posts have been created yet"
     formulario = SearchPostForm()
     
     return render(request, "home/index.html", {"posts" : posts,"formulario":formulario,"postInfo":postInfo})

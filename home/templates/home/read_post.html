@@ -1,22 +1,12 @@
 {% extends 'home/base.html' %}
+{% block home %}{% endblock home %}
 {% block content %}
-    <div class="main-content ">
-            
-        <div class="row" style="margin-bottom:50px!important;">
+    <div class="main-content">
+        <div class="row" style="margin:10px 0!important;">
             <!-- Blog entries-->
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                    <form class="col-12" action = {% url 'home' %} method = "GET" >
-                        {{formulario}}
-                    </form>
-                    {% if  postInfo%}
-                        <h1>{{postInfo}}</h1>
-                    {% endif %}
-                    
                         <!-- Blog post-->
                             <div class="">
-                                <div class="card">
+                                <div class="card" style="margin:0!important;">
                                     <div class="card-header">
                                         <div class="user-card-header-content">
                                             <div class="user-card-header-photo">
@@ -52,7 +42,6 @@
                                     </div>
                                             
                                 </div>
-                            </div>
 
         <div class="col-md-2">
 {% endblock content %}

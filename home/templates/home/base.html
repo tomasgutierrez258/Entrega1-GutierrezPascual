@@ -60,12 +60,14 @@
             </div>
         </div>
     </nav>
-    <section class="blog-content container">
+    <section class="container">
+        
         <div class="main-content">
-            <div class="row" style="margin-bottom:10px!important;">
+            {% block home %}{% endblock home %}
+            <div class="row blog-content" style="">
                 <!-- Blog entries-->
                 <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-8" style="">
                     {% block content %}{% endblock content %}
                 </div>   
                 <div class="col-md-2"> </div>

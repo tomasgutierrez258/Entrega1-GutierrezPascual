@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
     {% block content %}
-        <form action = {% url 'create_post' %} method = "POST" class="card form-modified-1"  enctype = 'multipart/form-data'>
+        <form action = {% url 'create_post' %} method = "POST" class=""  enctype = 'multipart/form-data'>
             {% csrf_token %}
             {{form.media}}
                     {{formulario}}

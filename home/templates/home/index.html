@@ -1,14 +1,22 @@
 {% extends 'home/base.html' %}
 
-{% block content %}
-            <form class="col-12" action = {% url 'home' %} method = "GET" style="margin-top: 20px;">
-                {{formulario}}
-            </form>
-
-            {% if  postInfo%}
-                <h1>{{postInfo}}</h1>
+{% block home %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+            {% if postInfo == 1 %}
+                <form class="col-12" action = {% url 'home' %} method = "GET" style="margin-top: 20px;margin-bottom: 10px;padding:0px!important;">
+                    {{formulario}}
+                </form>
+                <div style="display:flex;justify-content: center!important;">
+                    <h1>No results found</h1>
+                </div>
+            {% elif postInfo != 2 %}
+                <form class="col-12" action = {% url 'home' %} method = "GET" style="margin-top: 20px;margin-bottom: 10px;padding:0px!important;">
+                    {{formulario}}
+                </form>
             {% endif %}
-     
+        
             <div>
                 <!-- Blog post-->
                 {% for post in posts %}
@@ -18,6 +26,9 @@
                                     <div class="user-card-header-photo">
                                         {% if post.user.userextension.avatar %}
                                             <img src={{post.user.userextension.avatar.url}} alt="avatar"
+                                            class="rounded-circle img-fluid" style="width: 26px;height: 26px;">
+                                        {% else %}
+                                            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=128" alt="avatar"
                                             class="rounded-circle img-fluid" style="width: 26px;height: 26px;">
                                         {% endif %}
                                     </div>
@@ -49,26 +60,40 @@
                                 </div>
                             </div>
                             <div class="card-body d-flex">
-                                <a href={% url 'read_post' post.id %} class="nav-link">
                                     {% if post.image_post %}
-                                        <div class="card-body-content col-md-8">
-                                                <h2 class="card-title h5">{{post.title}}</h2>
-                                                <p class="card-text">{{post.brief_description}}</p>
-                                        </div>
-                                        <div class="card-body-img col-md-4">
-                                            <a href="#!" class="">
-                                                    <img class="card-img-top" src={{post.image_post.url}} alt="..." />
-                                            </a>
-                                        </div>
+                                        <a href={% url 'read_post' post.id %} class="nav-link" style="display:flex;">
+                                            <div class="card-body-content col-md-8">
+                                                    <h2 class="card-title h5">{{post.title}}</h2>
+                                                    <p class="card-text">{{post.brief_description}}</p>
+                                            </div>
+                                            <div class="card-body-img col-md-4">
+                                                        <img class="card-img-top" src={{post.image_post.url}} alt="..." />
+                                            </div>
+                                        </a>
                                     {% else %}
-                                        <div class="card-body-content col-md-12">
-                                                <h2 class="card-title h5">{{post.title}}</h2>
-                                                <p class="card-text">{{post.brief_description}}</p>
-                                        </div>
+                                        <a href={% url 'read_post' post.id %} class="nav-link" style="display:flex;">
+                                            <div class="card-body-content col-md-12">
+                                                    <h2 class="card-title h5">{{post.title}}</h2>
+                                                    <p class="card-text">{{post.brief_description}}</p>
+                                            </div>
+                                        </a>
                                     {% endif %}
                                 </a>
                             </div>
                         </div>
                 {% endfor %}
             </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock home %}
+    
+{% block content %}
+    
+    {% if postInfo == 2 %}
+        <div style="display:flex;justify-content: center!important;">
+            <h1>No posts have been created yet</h1>
+        </div>
+    {% endif %}
 {% endblock content %}

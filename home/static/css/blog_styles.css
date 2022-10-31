@@ -3,7 +3,9 @@
 body{
   background-color: rgb(238,238,238)!important;
 }
-
+form{
+  padding:50px 200px;
+}
 .form-modified-1{
     margin:5% 35%!important;
     border: none!important;
@@ -15,12 +17,12 @@ body{
   }
 
   .blog-content{
-    min-height: calc(100vh - 56px);
+    min-height: calc(100vh - 68px);
   }
-  form input{
+  /* form input{
   margin-bottom:10px;
   margin-right:0px;
-  }
+  } */
 
   /* .main-content{
     margin-top: 20px;
@@ -155,4 +157,17 @@ body{
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    
+  }
+
+  .contact-user{
+    display: flex;
+    background-color: rgb(33,37,41);
+    color: rgb(247,247,247);
+    border: 1px solid black;
+    padding: 10px 0;
+    border-radius: 1000px;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
   }

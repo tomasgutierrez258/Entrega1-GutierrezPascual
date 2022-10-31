@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-<form action = {% url 'register' %} method = "POST" class="card form-modified-2">
+<form action = {% url 'register' %} method = "POST" class="">
     {% csrf_token %}
     <table>
       {{formulario}}
