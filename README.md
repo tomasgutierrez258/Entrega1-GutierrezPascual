@@ -4,8 +4,8 @@
 Se trata de una pagina con formato de blog que permite visualizar posteos de los usuarios.
 
 ## 🔗Entrega final CODERHOUSE
- - [Video presentacion](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Especificaciones de los modelos](https://github.com/matiassingers/awesome-readme)
+ - [Video presentacion]()
+ - [Especificaciones funcional de diseño](https://docs.google.com/document/d/1jqjY8xyCm9SpGWyuwsc3AxSwqTqWzQoW2_b4Pcza4DA/edit?usp=sharing)
 ## Funcionalidades
 
 ### 1) Gestion de usuarios
