@@ -34,7 +34,7 @@
                                         <div class="card-body-content col-md-12">
                                             <h2 class="card-title h1">{{posts.title}}</h2>
                                             <h2 class="card-title h5">{{posts.subtitle}}</h2>
-                                            <p class="card-text">{{posts.text}}</p>
+                                            <p class="card-text">{{posts.text | safe}}</p>
                                             {% if posts.image_post %}
                                                 <img class="card-img-top" src={{posts.image_post.url}} alt="..."  />
                                             {% endif %}

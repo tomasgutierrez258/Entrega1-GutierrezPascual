@@ -1,9 +1,9 @@
 {% extends 'home/base.html' %}
     {% block content %}
-        <form action = {% url 'create_post' %} method = "POST" class=""  enctype = 'multipart/form-data'>
+        <form action = {% url 'create_post' %} method = "POST" class=""  enctype = 'multipart/form-data' style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
             {% csrf_token %}
-            {{form.media}}
-                    {{formulario}}
-                    <button class="btn btn-primary">Create</button> 
+            {{formulario.media}}
+            {{formulario}}
+            <button class="btn btn-primary">Create</button> 
         </form>
     {% endblock content %}

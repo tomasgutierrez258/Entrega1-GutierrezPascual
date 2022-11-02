@@ -99,9 +99,9 @@ form{
     border: rgb(33,37,41) solid 1px;
   }
 
-  .card-title{
-    text-transform: capitalize;
-  }
+  /* .card-title{
+    text-transform:capitalize;
+  } */
   .card-header,.user-card-header-info,.user-card-header-content{
     display: flex;
     flex-direction: row;

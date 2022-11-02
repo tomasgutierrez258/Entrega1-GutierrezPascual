@@ -34,5 +34,5 @@ def messages(request,other_user_str):
             if (request.user.username in message.sent_by and other_user_str in message.received_by) or (other_user_str in message.sent_by and request.user.username in message.received_by):
                 messages.append(message)
     formulario = ChatMessage()
-    other_user_obj = User.objects.filter(username__icontains=other_user_str)
+    other_user_obj = User.objects.filter(username=other_user_str)
     return render(request, "messenger/messages.html", {"formulario":formulario,"messages":messages,"other_user_str":other_user_str,"other_user_obj":other_user_obj})

@@ -1,9 +1,10 @@
 {% extends 'home/base.html' %}
 {% block content %}
 
-  <form action = {% url 'edit_post' object.id %} method = "POST" class="">
+  <form action = {% url 'edit_post' object.id %} method = "POST" style="display:flex;flex-direction:column;justify-content:center;align-items:center;">
     {% csrf_token %}
     <table>
+      {{form.media}}
       {{form}}
     </table>
     <button class="btn btn-primary">Edit</button> 
