@@ -4,8 +4,8 @@
 Se trata de una pagina con formato de blog que permite visualizar posteos de los usuarios.
 
 ## 🔗Entrega final CODERHOUSE
- - [Video presentacion]()
- - [Especificaciones funcional de diseño](https://docs.google.com/document/d/1jqjY8xyCm9SpGWyuwsc3AxSwqTqWzQoW2_b4Pcza4DA/edit?usp=sharing)
+ - [Video presentacion](https://www.youtube.com/watch?v=gBIZ-nhRyoM&t=469s)
+ - [Especificacion funcional de diseño](https://docs.google.com/document/d/1jqjY8xyCm9SpGWyuwsc3AxSwqTqWzQoW2_b4Pcza4DA/edit?usp=sharing)
 ## Funcionalidades
 
 ### 1) Gestion de usuarios
@@ -21,7 +21,7 @@ Se trata de una pagina con formato de blog que permite visualizar posteos de los
 - Si aun no hay posteos creados o si la busqueda no arrojo resultados se mostrara un mensaje alertando al usuario.
 ### 3) Mensajeria entre usuarios
 - Al acceder a la pantalla de mensajeria se listaran todos los usuarios disponibles para chatear, cuando no hay otros usuarios creados se mostrara una alerta.
-- Una vez elegido el usuario con quien chatear, y se puede enviar mensajes.
+- Una vez elegido el usuario con quien chatear ya se podra enviar mensajes.
 ## Authors
 
 [![@tomasgutierrez258](https://img.shields.io/badge/@tomasgutierrez258-000?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/tomasgutierrez258)
