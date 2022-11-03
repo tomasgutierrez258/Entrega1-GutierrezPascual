@@ -31,7 +31,7 @@ def messages(request,other_user_str):
         chat_messages = Message.objects.all()
         messages = []
         for message in chat_messages:
-            if (request.user.username in message.sent_by and other_user_str in message.received_by) or (other_user_str in message.sent_by and request.user.username in message.received_by):
+            if (request.user.username == message.sent_by and other_user_str == message.received_by) or (other_user_str == message.sent_by and request.user.username == message.received_by):
                 messages.append(message)
     formulario = ChatMessage()
     other_user_obj = User.objects.filter(username=other_user_str)

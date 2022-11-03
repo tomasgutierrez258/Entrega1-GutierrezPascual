@@ -4,6 +4,13 @@
   <div class="row" style="">
     <div class="col-md-12" style="">
       <div class="card-body" style="display:flex;flex-direction:column;gap:30px;min-width: 280px;">
+        
+        {% if not users %}
+          <div style="display:flex;justify-content: center!important;">
+              <h1>No users to chat</h1>
+          </div>
+        {% endif %}
+
         {% for user in users %}
           <div class="contact-user" style="display:flex;justify-content:space-between;">
             <div style="margin-left:10px">
