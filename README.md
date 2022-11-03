@@ -22,7 +22,7 @@ Se trata de una pagina con formato de blog que permite visualizar posteos de los
 ### 3) Mensajeria entre usuarios
 - Al acceder a la pantalla de mensajeria se listaran todos los usuarios disponibles para chatear, cuando no hay otros usuarios creados se mostrara una alerta.
 - Una vez elegido el usuario con quien chatear ya se podra enviar mensajes.
-## Authors
+## Autores
 
 [![@tomasgutierrez258](https://img.shields.io/badge/@tomasgutierrez258-000?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/tomasgutierrez258)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juan-tomas-gutierrez-918297151/)
